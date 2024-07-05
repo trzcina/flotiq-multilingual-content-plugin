@@ -19,6 +19,7 @@ const regenerate = (formik, contentType) => {
   const alreadyFilled = formik.values['__translations']?.length;
   if(alreadyFilled) {
     alert('Translation field already filled. Delete translation field content and click again');
+    return;
   }
 
   const translatedFields = contentType.metaDefinition.propertiesConfig.__translations.items.order;
