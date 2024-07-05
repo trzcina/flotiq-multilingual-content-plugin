@@ -3,7 +3,7 @@ import pluginInfo from "../plugin-manifest.json";
 import { formFieldConfigHandler } from "./form-field-render";
 
 
-registerFn(pluginInfo, (handler, client, globals) => {
+registerFn(pluginInfo, (handler) => {
   handler.on("flotiq.form.field::config", (data) =>
     formFieldConfigHandler(data, pluginInfo)
   );
