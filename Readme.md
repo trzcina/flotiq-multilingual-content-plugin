@@ -1,6 +1,12 @@
 [[_TOC_]]
 
-# Plain JS Plugin
+# Flotiq Multilingual Content
+
+This plugin adds a "Fill with current content" button to __translation fields to simplify the process of filling in translations.
+
+![](docs/fill-btn.png)
+
+This repository is based on  Plain JS Plugin
 
 ## Quick start
 
