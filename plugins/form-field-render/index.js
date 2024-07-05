@@ -6,12 +6,20 @@ import {
 const BTN_STYLE = `
 background: #0083fc;
 position: absolute;
-top: -6px;
+top: -2px;
 right: 0;
 border-radius: 8px;
 padding: 5px 10px;
 color: white;
-font-size: .9em;
+font-size: .8em;
+`;
+
+const DIVIDER_STYLE = `
+background: #dae3f2;
+position: absolute;
+top: -6px;
+height: 1px;
+width: 100%;
 `;
 
 const regenerate = (formik, contentType) => {
@@ -47,10 +55,12 @@ export const formFieldConfigHandler = (flotiqEvent, pluginInfo) => {
   const cacheEntry = getCachedElement(cacheKey);
 
   let button;
+  let divider;
 
   if (cacheEntry) {
     cacheEntry.root.formik = formik;
-    button = cacheEntry.element;
+    button = cacheEntry.element[0];
+    divider = cacheEntry.element[1];
   } else {
     const cacheData = {
       formik,
@@ -63,11 +73,16 @@ export const formFieldConfigHandler = (flotiqEvent, pluginInfo) => {
       regenerate(cacheData.formik, cacheData.contentType);
     });
     button.type = "button";
-    button.innerText = 'Fill with current content';
+    button.innerText = 'Fill translations with current content';
     button.style = BTN_STYLE;
-    addElementToCache(button, cacheData, cacheKey);
+
+    // Create divider
+    const divider = document.createElement("div");
+    divider.style = DIVIDER_STYLE;
+
+    addElementToCache([button, divider], cacheData, cacheKey);
   }
 
-  config.additionalElements = [button];
+  config.additionalElements = [button, divider];
   return null;
 }
